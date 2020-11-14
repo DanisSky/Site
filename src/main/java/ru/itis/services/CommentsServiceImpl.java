@@ -26,7 +26,6 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     public List<CommentDto> getAllCommentsByCarId(Long id) {
-
         return commentsRepository.findAllByCarId(id);
     }
 }

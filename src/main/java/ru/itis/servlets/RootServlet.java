@@ -1,7 +1,7 @@
 package ru.itis.servlets;
 
+import org.springframework.context.ApplicationContext;
 import ru.itis.dto.CarDto;
-import ru.itis.models.Car;
 import ru.itis.services.CarsService;
 
 import javax.servlet.ServletConfig;
@@ -21,7 +21,8 @@ public class RootServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext servletContext = config.getServletContext();
-        carsService = (CarsService) servletContext.getAttribute("carsService");
+        ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+        carsService = applicationContext.getBean(CarsService.class);
     }
 
     @Override

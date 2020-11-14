@@ -1,9 +1,9 @@
 package ru.itis.servlets;
 
+import org.springframework.context.ApplicationContext;
 import ru.itis.dto.ChangePasswordForm;
 import ru.itis.dto.UserDto;
 import ru.itis.services.ChangePasswordService;
-import ru.itis.services.SignUpService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -22,7 +22,8 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext servletContext = config.getServletContext();
-        changePasswordService = (ChangePasswordService) servletContext.getAttribute("changePasswordService");
+        ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+        changePasswordService = applicationContext.getBean(ChangePasswordService.class);
     }
 
     @Override

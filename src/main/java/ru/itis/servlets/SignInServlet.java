@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import org.springframework.context.ApplicationContext;
 import ru.itis.dto.UserDto;
 import ru.itis.models.User;
 import ru.itis.services.SignInService;
@@ -24,8 +25,9 @@ public class SignInServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext servletContext = config.getServletContext();
-        signInService = (SignInService) servletContext.getAttribute("signInService");
-        usersService = (UsersService) servletContext.getAttribute("usersService");
+        ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+        signInService = applicationContext.getBean(SignInService.class);
+        usersService = applicationContext.getBean(UsersService.class);
     }
 
     @Override

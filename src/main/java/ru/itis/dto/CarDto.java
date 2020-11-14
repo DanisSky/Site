@@ -22,6 +22,7 @@ public class CarDto {
     private Long mileage;
     private String fileStorageName;
     private String fileType;
+
     public static CarDto from(Car car) {
         return CarDto.builder()
                 .id(car.getId())
@@ -35,7 +36,7 @@ public class CarDto {
                 .build();
     }
 
-    public static List<CarDto> from(List<Car> cars){
+    public static List<CarDto> from(List<Car> cars) {
         return cars.stream().map(CarDto::from).collect(Collectors.toList());
     }
 

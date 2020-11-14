@@ -1,6 +1,7 @@
 package ru.itis.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.ApplicationContext;
 import ru.itis.dto.CarDto;
 import ru.itis.dto.CommentDto;
 import ru.itis.dto.UserDto;
@@ -24,14 +25,16 @@ public class CarInfoServlet extends HttpServlet {
 
     CarsService carsService;
     CommentsService commentsService;
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper;
     private Long carId;
 
     @Override
     public void init(ServletConfig config) {
         ServletContext servletContext = config.getServletContext();
-        carsService = (CarsService) servletContext.getAttribute("carsService");
-        commentsService = (CommentsService) servletContext.getAttribute("commentsService");
+        ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+        carsService = applicationContext.getBean(CarsService.class);
+        objectMapper = applicationContext.getBean(ObjectMapper.class);
+        commentsService = applicationContext.getBean(CommentsService.class);
     }
 
     @Override
@@ -63,6 +66,7 @@ public class CarInfoServlet extends HttpServlet {
         List<CommentDto> commentDtos = commentsService.getAllCommentsByCarId(carId);
         String commentAsJson = objectMapper.writeValueAsString(commentDtos);
 
+        System.out.println(commentAsJson);
 
         resp.setContentType("application/json");
         resp.getWriter().println(commentAsJson);

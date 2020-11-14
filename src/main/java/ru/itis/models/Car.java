@@ -9,6 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Builder
 @ToString
+
 public class Car {
     private Long id;
     private String mark;

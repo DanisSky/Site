@@ -26,7 +26,8 @@
                               placeholder="Message"></textarea>
                     <div class="col-12">
                         <button type="submit" value="Send"
-                           class=" btn btn-secondary form-button-submit button icon solid">Send Message</button>
+                                class=" btn btn-secondary form-button-submit button icon solid">Send Message
+                        </button>
                     </div>
                 </form>
             </section>
@@ -55,8 +56,7 @@
         </div>
     </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
 </body>
 

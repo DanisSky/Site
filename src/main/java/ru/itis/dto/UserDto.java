@@ -1,8 +1,8 @@
 package ru.itis.dto;
 
-import lombok.Data;
-import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.models.User;
 
@@ -18,10 +18,10 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String role;
-
-    public boolean isAdmin() {
-        return this.role.equals("ADMIN");
-    }
+//
+//    public boolean isAdmin() {
+//        return this.role.equals("ADMIN");
+//    }
 
     public static UserDto from(User user) {
         return UserDto.builder()

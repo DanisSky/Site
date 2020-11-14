@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import org.springframework.context.ApplicationContext;
 import ru.itis.dto.FeedbackForm;
 import ru.itis.services.FeedbackService;
 
@@ -20,7 +21,8 @@ public class FeedbackServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext servletContext = config.getServletContext();
-        feedbackService = (FeedbackService) servletContext.getAttribute("feedbackService");
+        ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+        feedbackService = applicationContext.getBean(FeedbackService.class);
 
     }
 
