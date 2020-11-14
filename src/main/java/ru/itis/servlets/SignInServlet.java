@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @WebServlet("/signIn")
-public class    SignInServlet extends HttpServlet {
+public class SignInServlet extends HttpServlet {
     private SignInService signInService;
     private UsersService usersService;
 

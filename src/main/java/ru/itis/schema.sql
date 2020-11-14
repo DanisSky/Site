@@ -1,3 +1,10 @@
+create table feedback(
+                         id serial ,
+                         name varchar(100),
+                         email varchar(100),
+                         text text,
+                         constraint feedback_pk primary key (id)
+);
 create table account
 (
     id            bigserial,

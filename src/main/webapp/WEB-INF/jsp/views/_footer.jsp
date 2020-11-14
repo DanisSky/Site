@@ -6,24 +6,27 @@
         </header>
         <div class="flex-sm-column flex-md-row row d-flex ">
             <section class="col-6">
-                <form method="post"
-                      class="form "
-                      action="#">
+                <form action="${pageContext.request.contextPath}/feedback"
+                      method="post"
+                      class="form">
                     <input class="col-9 mb-1"
                            name="name"
+                           required
                            placeholder="Name"
-                           type="text" required/>
+                           type="text"/>
                     <input class="col-9 mb-1"
                            name="email"
+                           required
                            placeholder="Email"
-                           type="text" required/>
+                           type="text"/>
                     <textarea class="col-9 "
                               name="message"
+                              required
                               rows="5"
-                              placeholder="Message" required></textarea>
+                              placeholder="Message"></textarea>
                     <div class="col-12">
-                        <a href="#"
-                           class=" btn btn-secondary form-button-submit button icon solid">Send Message</a>
+                        <button type="submit" value="Send"
+                           class=" btn btn-secondary form-button-submit button icon solid">Send Message</button>
                     </div>
                 </form>
             </section>
@@ -42,7 +45,7 @@
                                 8 (000) 000-0000
                             </li>
                             <li class="icon solid fa-envelope">
-                                <a href="#">info@untitled.tld</a>
+                                <a href="https://github.com/DanisSky/Site">git@DanisSky</a>
                             </li>
                         </ul>
                     </div>

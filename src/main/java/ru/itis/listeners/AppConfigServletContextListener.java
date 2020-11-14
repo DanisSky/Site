@@ -46,13 +46,18 @@ public class AppConfigServletContextListener implements ServletContextListener {
         CommentsRepository commentsRepository = new CommentsRepositoryTemplateImpl(dataSource);
         CommentsService commentsService = new CommentsServiceImpl(commentsRepository);
 
-        servletContext.setAttribute("carsService",carsService);
+        FeedbackRepository feedbackRepository = new FeedbackRepositoryImpl(dataSource);
+        FeedbackService feedbackService = new FeedbackServiceImpl(feedbackRepository);
+
+        servletContext.setAttribute("carsService", carsService);
         servletContext.setAttribute("dataSource", dataSource);
         servletContext.setAttribute("usersService", usersService);
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("signInService", signInService);
-        servletContext.setAttribute("changePasswordService",changePasswordService);
+        servletContext.setAttribute("changePasswordService", changePasswordService);
         servletContext.setAttribute("commentsService", commentsService);
+        servletContext.setAttribute("feedbackRepository", feedbackRepository);
+        servletContext.setAttribute("feedbackService", feedbackService);
     }
 
     @Override
