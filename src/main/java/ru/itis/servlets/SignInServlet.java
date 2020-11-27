@@ -42,10 +42,13 @@ public class SignInServlet extends HttpServlet {
         if (signInService.isSignIn(email, password)) {
             HttpSession httpSession = req.getSession(true);
             Optional<User> user = usersService.findByEmail(email);
+            Optional<String> role = usersService.getRole(user.get());
+
             UserDto userDto = UserDto.builder()
                     .firstName(user.get().getFirstName())
                     .lastName(user.get().getLastName())
                     .id(user.get().getId())
+                    .role(role.get())
                     .build();
             httpSession.setAttribute("userDto", userDto);
             resp.sendRedirect("/");

@@ -23,9 +23,9 @@ import java.util.Optional;
 @WebServlet("/carInfo")
 public class CarInfoServlet extends HttpServlet {
 
-    CarsService carsService;
-    CommentsService commentsService;
-    ObjectMapper objectMapper;
+    private CarsService carsService;
+    private CommentsService commentsService;
+    private ObjectMapper objectMapper;
     private Long carId;
 
     @Override

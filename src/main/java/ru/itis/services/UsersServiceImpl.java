@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import ru.itis.dto.UserDto;
 import ru.itis.models.User;
 import ru.itis.repositories.UsersRepository;
@@ -30,6 +31,14 @@ public class UsersServiceImpl implements UsersService {
                 .phone(pool.get("phone"))
                 .build();
         usersRepository.save(user);
+    }
+
+    @Override
+    public Optional<String> getRole(User user) {
+        if (usersRepository.getRole(user.getId()).isPresent()){
+            return Optional.of("admin");
+        }
+        return Optional.empty();
     }
 
     @Override

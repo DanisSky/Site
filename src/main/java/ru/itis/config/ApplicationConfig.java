@@ -59,6 +59,16 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public FileService fileService() {
+        return new FileServiceImpl(filesRepository());
+    }
+
+    @Bean
+    public FilesRepository filesRepository() {
+        return new FilesRepositoryImpl(dataSource());
+    }
+
+    @Bean
     CarsRepository carsRepository() {
         return new CarsRepositoryJdbcTemplateImpl(dataSource());
     }

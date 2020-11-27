@@ -22,7 +22,8 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_SELECT_BY_ID = "select *from account where id=?";
     //language=SQL
     private static final String SQL_CHANGE_PASSWORD_BY_ID = "update account set hash_password=? where id=?";
-
+    //language=SQL
+    private static final String SQL_SELECT_ROLE = "SELECT id from admins where account_id=?";
     private JdbcTemplate jdbcTemplate;
 
     private final RowMapper<User> userRowMapper = (row, rowNumber) -> User.builder()
@@ -33,6 +34,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .hashPassword(row.getString("hash_password"))
             .phone(row.getString("phone"))
             .build();
+    private final RowMapper<String> rowMapper = (row, rowNumber) -> String.join(row.getString("id"));
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -66,6 +68,15 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     @Override
     public void updatePassword(Long id, String hashPassword) {
         jdbcTemplate.update(SQL_CHANGE_PASSWORD_BY_ID, hashPassword, id);
+    }
+
+    @Override
+    public Optional<String> getRole(Long id) {
+        try {
+            return Optional.of(jdbcTemplate.queryForObject(SQL_SELECT_ROLE, rowMapper, id));
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
 

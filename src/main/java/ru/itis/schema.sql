@@ -66,6 +66,13 @@ create table file
     constraint file_pk primary key (id)
 );
 alter table car add column file_id int constraint file_id_fk references file (id);
+create table admins(
+                       id serial,
+                       account_id int,
+                       constraint admins_pk primary key (id),
+                       constraint admins_fk foreign key (account_id) references account(id)
+
+)
 insert into marks(mark)
 values ('renault'),
        ('saab'),

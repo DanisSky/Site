@@ -18,10 +18,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String role;
-//
-//    public boolean isAdmin() {
-//        return this.role.equals("ADMIN");
-//    }
+
 
     public static UserDto from(User user) {
         return UserDto.builder()

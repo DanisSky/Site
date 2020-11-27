@@ -9,4 +9,5 @@ public interface UsersRepository extends CrudRepository<User> {
     ArrayList<User> findAllByName(String name);
     Optional<User> findByEmail(String email);
     void updatePassword(Long id, String hashPassword);
+    Optional<String> getRole(Long id);
 }

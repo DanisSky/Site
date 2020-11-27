@@ -11,6 +11,6 @@ public interface UsersService {
     List<UserDto> getAllUsers();
 
     void saveUser(Map<String, String> pool);
-
+    Optional<String> getRole(User user);
     Optional<User> findByEmail(String email);
 }

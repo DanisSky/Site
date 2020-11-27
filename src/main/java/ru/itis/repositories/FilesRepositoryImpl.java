@@ -8,6 +8,7 @@ import ru.itis.models.FileInfo;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.UUID;
 
 public class FilesRepositoryImpl implements FilesRepository {
 
@@ -29,7 +30,7 @@ public class FilesRepositoryImpl implements FilesRepository {
             FileInfo.builder()
                     .id(row.getLong("id"))
                     .originalFileName(row.getString("original_file_name"))
-                    .storageFileName(row.getString("storage_file_name"))
+                    .storageFileName((UUID) row.getObject("storage_file_name"))
                     .size(row.getLong("size"))
                     .type(row.getString("type"))
                     .build();
@@ -37,7 +38,9 @@ public class FilesRepositoryImpl implements FilesRepository {
 
     @Override
     public void save(FileInfo entity) {
-        jdbcTemplate.update(SQL_INSERT, entity.getStorageFileName(), entity.getOriginalFileName(),
+        jdbcTemplate.update(SQL_INSERT,
+                entity.getStorageFileName(),
+                entity.getOriginalFileName(),
                 entity.getType(),
                 entity.getSize());
 

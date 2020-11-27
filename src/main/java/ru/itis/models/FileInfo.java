@@ -2,6 +2,8 @@ package ru.itis.models;
 
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -12,7 +14,7 @@ import lombok.*;
 public class FileInfo {
     private Long id;
     private String originalFileName;
-    private String storageFileName;
+    private UUID storageFileName;
     private Long size;
     private String type;
 }
