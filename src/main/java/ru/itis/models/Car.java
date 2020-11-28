@@ -19,4 +19,6 @@ public class Car {
     private Long mileage;
     private String storageFileName;
     private String fileType;
+    private Long markId;
+    private Long fileId;
 }

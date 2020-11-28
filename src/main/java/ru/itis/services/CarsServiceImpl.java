@@ -27,7 +27,12 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
-    public Optional<Car> findByMark(String mark) {
-        return Optional.empty();
+    public Long findByMark(String mark) {
+        return carsRepository.findMarkIdByName(mark).get().getId();
+    }
+
+    @Override
+    public void save(Car car) {
+        carsRepository.save(car);
     }
 }

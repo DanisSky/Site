@@ -10,7 +10,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 public class FileServiceImpl implements FileService {
@@ -23,7 +22,7 @@ public class FileServiceImpl implements FileService {
 
 
     @Override
-    public void saveFileToStorage(InputStream file, String originalFileName, String contentType, Long size) {
+    public Long saveFileToStorage(InputStream file, String originalFileName, String contentType, Long size) {
         FileInfo fileInfo = FileInfo.builder()
                 .originalFileName(originalFileName)
                 .storageFileName(UUID.randomUUID())
@@ -34,6 +33,7 @@ public class FileServiceImpl implements FileService {
         try {
             Files.copy(file, Paths.get("C:\\Users\\рвлгге\\Desktop\\Semestrovka\\site\\src\\main\\webapp\\WebContent\\images\\" + fileInfo.getStorageFileName() + "." + fileInfo.getType().split("/")[1]));
             filesRepository.save(fileInfo);
+            return fileInfo.getId();
 
         } catch (IOException e) {
             throw new IllegalArgumentException(e);

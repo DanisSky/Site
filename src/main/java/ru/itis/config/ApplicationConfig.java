@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import ru.itis.repositories.*;
 import ru.itis.services.*;
 
@@ -22,6 +23,11 @@ public class ApplicationConfig {
 
     @Autowired
     private Environment environment;
+
+    @Bean
+    public SimpleJdbcInsert simpleJdbcInsert() {
+        return new SimpleJdbcInsert(dataSource());
+    }
 
     @Bean
     public UsersService usersService() {

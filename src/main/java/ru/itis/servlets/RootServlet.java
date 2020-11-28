@@ -28,7 +28,6 @@ public class RootServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<CarDto> cars = (ArrayList<CarDto>) carsService.getAllCars();
-
         req.setAttribute("carsForJsp", cars);
         req.getRequestDispatcher("/WEB-INF/jsp/root.jsp").forward(req,resp);
     }

@@ -9,7 +9,7 @@
         <a href="${pageContext.request.contextPath}/carInfo?carId=${car.id}">
             <div class="post">
                 <div class="product">
-                    <img src="WebContent/images/${car.fileStorageName}.${car.fileType}">
+                    <img src="/WebContent/images/${car.fileStorageName}.${car.fileType}">
                     <div class="info">
                         <h4>${car.mark}</h4>
                         <span class="description">${car.model}</span>

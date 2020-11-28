@@ -32,7 +32,7 @@ public class CarDto {
                 .description(car.getDescription())
                 .mileage(car.getMileage())
                 .fileStorageName(car.getStorageFileName())
-                .fileType(car.getFileType())
+                .fileType(car.getFileType().substring(car.getFileType().indexOf("/")+1))
                 .build();
     }
 

@@ -34,6 +34,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .hashPassword(row.getString("hash_password"))
             .phone(row.getString("phone"))
             .build();
+
     private final RowMapper<String> rowMapper = (row, rowNumber) -> String.join(row.getString("id"));
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {

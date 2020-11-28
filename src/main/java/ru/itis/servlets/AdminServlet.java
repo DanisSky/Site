@@ -1,6 +1,7 @@
 package ru.itis.servlets;
 
 import org.springframework.context.ApplicationContext;
+import ru.itis.models.Car;
 import ru.itis.services.CarsService;
 import ru.itis.services.FileService;
 
@@ -38,13 +39,21 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Part part = req.getPart("photo");
-        filesService.saveFileToStorage(part.getInputStream(),
+        Long id = filesService.saveFileToStorage(part.getInputStream(),
                 part.getSubmittedFileName(),
                 part.getContentType(),
                 part.getSize());
 
+        Car car = Car.builder()
+                .fileId(id)
+                .model(req.getParameter("model"))
+                .price(Double.valueOf(req.getParameter("price")))
+                .description(req.getParameter("description"))
+                .mileage(Long.valueOf(req.getParameter("mileage")))
+                .markId(carsService.findByMark(req.getParameter("mark")))
+                .build();
 
-        String text = req.getParameter("description");
+        carsService.save(car);
         resp.sendRedirect("/");
     }
 }
