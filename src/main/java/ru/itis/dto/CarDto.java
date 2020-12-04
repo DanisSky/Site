@@ -20,8 +20,7 @@ public class CarDto {
     private Double price;
     private String description;
     private Long mileage;
-    private String fileStorageName;
-    private String fileType;
+    private Long fileId;
 
     public static CarDto from(Car car) {
         return CarDto.builder()
@@ -31,8 +30,7 @@ public class CarDto {
                 .price(car.getPrice())
                 .description(car.getDescription())
                 .mileage(car.getMileage())
-                .fileStorageName(car.getStorageFileName())
-                .fileType(car.getFileType().substring(car.getFileType().indexOf("/")+1))
+                .fileId(car.getFileId())
                 .build();
     }
 

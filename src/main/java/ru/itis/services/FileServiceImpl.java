@@ -31,7 +31,7 @@ public class FileServiceImpl implements FileService {
                 .build();
 
         try {
-            Files.copy(file, Paths.get("C:\\Users\\рвлгге\\Desktop\\Semestrovka\\site\\src\\main\\webapp\\WebContent\\images\\" + fileInfo.getStorageFileName() + "." + fileInfo.getType().split("/")[1]));
+            Files.copy(file, Paths.get("C:\\Users\\рвлгге\\Desktop\\Semestrovka\\files\\" + fileInfo.getStorageFileName() + "." + fileInfo.getType().split("/")[1]));
             filesRepository.save(fileInfo);
             return fileInfo.getId();
 
@@ -46,7 +46,7 @@ public class FileServiceImpl implements FileService {
         Optional<FileInfo> fileInfo = filesRepository.findById(fileId);
         // нашли файл на диске
         try {
-            File file = new File("C:\\Users\\рвлгге\\Desktop\\Semestrovka\\site\\src\\main\\webapp\\WebContent\\images\\" + fileInfo.get().getStorageFileName() + "." + fileInfo.get().getType().split("/")[1]);
+            File file = new File("C:\\Users\\рвлгге\\Desktop\\Semestrovka\\files\\" + fileInfo.get().getStorageFileName() + "." + fileInfo.get().getType().split("/")[1]);
             // записали его в ответ
             Files.copy(file.toPath(), outputStream);
         } catch (IOException e) {

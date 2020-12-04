@@ -17,8 +17,6 @@ public class Car {
     private Double price;
     private String description;
     private Long mileage;
-    private String storageFileName;
-    private String fileType;
     private Long markId;
     private Long fileId;
 }

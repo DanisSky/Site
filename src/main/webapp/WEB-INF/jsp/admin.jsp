@@ -6,7 +6,7 @@
     <input type="text" name="mark" placeholder="mark">
     <input type="text" name="model" placeholder="model">
     <input type="text" name="price" placeholder="price">
-    <input type="text" name="description" placeholder="description">
+    <textarea name="description" placeholder="description"></textarea>
     <input type="text" name="mileage" placeholder="mileage">
     <input type="file" name="photo" multiple accept="image/*,image/jpeg" placeholder="photo">
     <button type="submit" value="send">send</button>

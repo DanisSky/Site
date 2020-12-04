@@ -1,6 +1,7 @@
 package ru.itis.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import ru.itis.dto.CarDto;
 import ru.itis.dto.CommentDto;
@@ -27,6 +28,7 @@ public class CarInfoServlet extends HttpServlet {
     private CommentsService commentsService;
     private ObjectMapper objectMapper;
     private Long carId;
+
 
     @Override
     public void init(ServletConfig config) {

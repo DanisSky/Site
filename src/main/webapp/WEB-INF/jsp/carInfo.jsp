@@ -7,7 +7,7 @@
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center mt-5">
         <div class="car__image">
-            <img src="WebContent/images/${Car.fileStorageName}.${Car.fileType}"
+            <img src="${pageContext.request.contextPath}/file?id=${Car.fileId}"
                  alt="car"/>
         </div>
         <div class="car__title ml-5">

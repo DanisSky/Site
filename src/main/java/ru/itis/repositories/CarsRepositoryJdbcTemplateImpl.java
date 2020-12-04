@@ -13,12 +13,12 @@ import java.util.Optional;
 public class CarsRepositoryJdbcTemplateImpl implements CarsRepository {
 
     //language=SQL
-    private static final String SQL_SELECT_ALL = "SELECT car.id, m.mark, model, price, description, mileage, storage_file_name, type from car\n" +
+    private static final String SQL_SELECT_ALL = "SELECT car.id, m.mark, model, price, description, mileage, file_id from car\n" +
             "join marks m on car.mark = m.id\n" +
-            "join file  on car.file_id = file.id order by car.id;";
+            "order by car.id;";
 
-    private static final String SQL_SELECT_BY_ID = "select car.id, m.mark, model, price, description, mileage, storage_file_name, type from car join marks m on car.mark = m.id join file on car.id = file.id where car.id=?";
-    private static final String SQL_SELECT_MARK_ID_BY_NAME = "select * from marks where mark=?";
+    private static final String SQL_SELECT_BY_ID = "select car.id, m.mark, model, price, description, mileage, file_id from car join marks m on car.mark = m.id where car.id=?";
+    private static final String SQL_SELECT_MARK_ID_BY_NAME = "select id, mark from marks where mark=?";
     //language=SQL
     private static final String SQL_INSERT = "insert into car ( mark, model, price, description, mileage, file_id) values (?,?,?,?,?,?)";
 
@@ -32,8 +32,7 @@ public class CarsRepositoryJdbcTemplateImpl implements CarsRepository {
             .price(row.getDouble("price"))
             .description(row.getString("description"))
             .mileage(row.getLong("mileage"))
-            .storageFileName(row.getString("storage_file_name"))
-            .fileType(row.getString("type"))
+            .fileId(row.getLong("file_id"))
             .build();
 
     private final RowMapper<Mark> markRowMapper = (row, rowNumber) -> Mark.builder()

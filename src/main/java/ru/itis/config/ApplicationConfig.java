@@ -68,7 +68,6 @@ public class ApplicationConfig {
     public FileService fileService() {
         return new FileServiceImpl(filesRepository());
     }
-
     @Bean
     public FilesRepository filesRepository() {
         return new FilesRepositoryImpl(dataSource());
