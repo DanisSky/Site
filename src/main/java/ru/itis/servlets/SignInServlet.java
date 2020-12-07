@@ -50,6 +50,7 @@ public class SignInServlet extends HttpServlet {
                     .id(user.get().getId())
                     .role(role.get())
                     .build();
+
             httpSession.setAttribute("userDto", userDto);
             resp.sendRedirect("/");
         } else {

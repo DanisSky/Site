@@ -1,15 +1,21 @@
 package ru.itis.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsertOperations;
+import org.springframework.stereotype.Repository;
 import ru.itis.models.FileInfo;
 
 import javax.sql.DataSource;
 import java.util.*;
 
+@Repository
 public class FilesRepositoryImpl implements FilesRepository {
 
     //language=SQL
@@ -18,11 +24,20 @@ public class FilesRepositoryImpl implements FilesRepository {
     private final static String SQL_SELECT_BY_ID = "select * from file where id = ?";
 
     private JdbcTemplate jdbcTemplate;
-    @Autowired
+
     private SimpleJdbcInsert simpleJdbcInsert;
+
+    @Autowired
+    public void FilesRepositorySimpleJdbcInsert(DataSource dataSource) {
+        simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName("file")
+                .usingColumns("storage_file_name", "original_file_name", "type", "size")
+                .usingGeneratedKeyColumns("id");
+    }
 
     public FilesRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+
     }
 
 
@@ -43,14 +58,12 @@ public class FilesRepositoryImpl implements FilesRepository {
     }
 
     private Long saveFileInfo(FileInfo fileInfo) {
-        simpleJdbcInsert.withTableName("file").usingGeneratedKeyColumns("id")
-                .usingColumns("storage_file_name", "original_file_name", "type", "size");
         Map<String, Object> map = new HashMap<>();
         map.put("storage_file_name", fileInfo.getStorageFileName());
         map.put("original_file_name", fileInfo.getOriginalFileName());
         map.put("type", fileInfo.getType());
         map.put("size", fileInfo.getSize());
-        return Long.parseLong(simpleJdbcInsert.executeAndReturnKey(map).toString());
+        return Long.parseLong(this.simpleJdbcInsert.executeAndReturnKey(map).toString());
     }
 
     @Override

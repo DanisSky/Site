@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsertOperations;
 import ru.itis.repositories.*;
 import ru.itis.services.*;
 
@@ -23,11 +24,6 @@ public class ApplicationConfig {
 
     @Autowired
     private Environment environment;
-
-    @Bean
-    public SimpleJdbcInsert simpleJdbcInsert() {
-        return new SimpleJdbcInsert(dataSource());
-    }
 
     @Bean
     public UsersService usersService() {
@@ -68,6 +64,7 @@ public class ApplicationConfig {
     public FileService fileService() {
         return new FileServiceImpl(filesRepository());
     }
+
     @Bean
     public FilesRepository filesRepository() {
         return new FilesRepositoryImpl(dataSource());
